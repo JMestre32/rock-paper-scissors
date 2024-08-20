@@ -12,61 +12,120 @@ function getComputerChoice(){
     }
 }
 
-//Obtain user choice and return it
-function getHumanChoice(){
-    let input = prompt("Choose rock, paper, or scissors.");
-    input = input.toLowerCase();
-    console.log(input)
-    return input;
-}
+
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissors = document.querySelector("#scissors");
+
+let humanScore = 0;
+let computerScore = 0;
+let computerChoice;
 
 
-
-
-function playGame(){
-    let humanScore = 0, computerScore = 0;
+rock.addEventListener("click", () => {
+    let humanChoice = "rock"
+    computerChoice = getComputerChoice()
     function playRound(humanChoice, computerChoice){
+        console.log(humanChoice)
+        console.log(computerChoice)
         if(humanChoice === computerChoice){
             console.log("It's a tie!");
         } else if(humanChoice === "rock" && computerChoice === "paper"){
             console.log("You lose! Paper beats Rock.");
             computerScore++;
+            document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+            if(computerScore === 5){
+                alert("You lose! Play again!")
+                computerScore = 0
+                humanScore = 0
+                document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+                document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            }
         } else if (humanChoice === "rock" && computerChoice === "scissors"){
             console.log("You win! Rock beats Scissors.");
             humanScore++;
-        } else if (humanChoice === "paper" && computerChoice === "scissors"){
-            console.log("You lose! Scissors beats Paper.");
+            document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            if(humanScore === 5){
+                alert("You win! Play again!")
+                computerScore = 0
+                humanScore =0
+                document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+                document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            }
+        } 
+    }
+    playRound(humanChoice, computerChoice)
+})
+
+
+paper.addEventListener("click", () => {
+    let humanChoice = "paper"
+    computerChoice = getComputerChoice()
+    function playRound(humanChoice, computerChoice){
+        console.log(humanChoice)
+        console.log(computerChoice)
+        if(humanChoice === computerChoice){
+            console.log("It's a tie!");
+        } else if(humanChoice === "paper" && computerChoice === "scissors"){
+            console.log("You lose! Scissors beats paper.");
             computerScore++;
+            document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+            if(computerScore === 5){
+                alert("You lose! Play again!")
+                computerScore = 0
+                humanScore = 0
+                document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+                document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            }
         } else if (humanChoice === "paper" && computerChoice === "rock"){
-            console.log("You win! Paper beats Rock!");
+            console.log("You win! Paper beats scissors.");
             humanScore++;
-        } else if (humanChoice === "scissors" && computerChoice === "rock"){
+            document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            if(humanScore === 5){
+                alert("You win! Play again!")
+                computerScore = 0
+                humanScore =0
+                document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+                document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            }
+        } 
+    }
+    playRound(humanChoice, computerChoice)
+})
+
+
+scissors.addEventListener("click", () => {
+    let humanChoice = "scissors"
+    computerChoice = getComputerChoice()
+    function playRound(humanChoice, computerChoice){
+        console.log(humanChoice)
+        console.log(computerChoice)
+        if(humanChoice === computerChoice){
+            console.log("It's a tie!");
+        } else if(humanChoice === "scissors" && computerChoice === "rock"){
             console.log("You lose! Rock beats scissors.");
             computerScore++;
+            document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+            if(computerScore === 5){
+                alert("You lose! Play again!")
+                computerScore = 0
+                humanScore = 0
+                document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+                document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            }
         } else if (humanChoice === "scissors" && computerChoice === "paper"){
             console.log("You win! Scissors beats paper.");
             humanScore++;
-        } else{
-            alert("Wrong input");
-        }
-
+            document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            if(humanScore === 5){
+                alert("You win! Play again!")
+                computerScore = 0
+                humanScore =0
+                document.getElementById('computer').innerHTML = "CPU SCORE: " + computerScore;
+                document.getElementById('user').innerHTML = "YOUR SCORE: " + humanScore;
+            }
+        } 
     }
+    playRound(humanChoice, computerChoice)
+})
 
-    let game = true;
-    while(game){
-        if(humanScore != 5 && computerScore != 5){
-            playRound(getHumanChoice(), getComputerChoice());
-            console.log("Computer score: " + computerScore);
-            console.log("Human score: " + humanScore);
-        } else if (humanScore === 5){
-            console.log("You win!");
-            game = false;
-        } else {
-            console.log("You lose!");
-            game = false;
-        }
-    }
-}
-
-
-playGame();
